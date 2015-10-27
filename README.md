@@ -275,3 +275,4 @@ This syntax creates virtual type `state_type`, where `0` is mapped to `GET`, `1`
 <img src="https://e38023e2-a-62cb3a1a-s-sites.googlegroups.com/site/ca15fall/resources/lab2-msimgui.png" alt="ModelSim virtual type">
  
 You will need to keep the parameter and virtual definitions synchronized by hand.
+
