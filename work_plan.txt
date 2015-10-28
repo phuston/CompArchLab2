@@ -1,0 +1,38 @@
+Lab 2 Work Plan 
+Isaac Getto, Sarah Walters, Patrick Huston
+
+Input Conditioner -- 1.5 hr | 10/29
+Complete inputconditioner.v
+Test bench for input conditioner
+Test script for input conditioner
+Circuit diagram of structural circuit for input conditioner
+Timing analysis for input conditioner
+
+Shift register -- 1 hr | start 10/29, finish 10/31
+Complete shiftregister.v
+Test bench for shift register
+Describe test bench strategy
+
+Midpoint checkin (due November 2 5pm) -- 1.5 hr | 10/31
+midpoint.v
+Load onto FPGA
+
+Buffer -- can meet on Sunday 11/1 if necessary.
+
+SPI Memory -- 2.5 hr | start 11/2, finish 11/4
+Understand/finalize schematic
+Understand/finalize FSM
+Write verilog
+Load onto FPGA
+
+SPI Memory Testing -- 1 hr | 11/4
+Write tests
+Describe testing strategy
+
+Fault Injection -- 1 hr | 11/6
+Modify SPI memory so it’s sensitive to fault_pin (and propagate through all modules)
+Connect fault_pin to switch on FPGA -> test on FPGA
+
+Write report (due November 9, 5pm) -- 1 hr | 11/6
+
+Aiming to be done by 11/6; buffer -- can meet over the weekend if necessary.
