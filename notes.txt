@@ -1,0 +1,7 @@
+Clock cycle counting:
+// conditioned = 1; synch0 = 0; synch1 = 1; counter = 0;
+// conditioned = 1; synch0 = 0; synch1 = 0; counter = 0;
+// conditioned = 1; synch0 = 0; synch1 = 0; counter = 1;
+//                                          counter = 2;
+//                                          counter = 3;
+// conditioned = 0;
