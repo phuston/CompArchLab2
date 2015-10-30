@@ -1,1 +1,1 @@
-iverilog -o test/compiled inputconditioner.v inputconditioner.t.v && ./test/compiled
+iverilog -o test/compiled inputconditioner.v inputconditioner.t.v && ./test/compiled && gtkwave waveform.vcd

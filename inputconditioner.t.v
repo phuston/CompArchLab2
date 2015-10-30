@@ -23,8 +23,9 @@ module testConditioner();
     always #10 clk=!clk;    // 50MHz Clock
 
     integer synchronize_counter;
+    integer clean_counter;
     initial begin
-        $dumpfile("inputconditioner.vcd");
+        $dumpfile("waveform.vcd");
         $dumpvars(0, testConditioner);
         dutpassed = 1;
 
@@ -46,6 +47,56 @@ module testConditioner();
             dutpassed = 0;
         end
 
+        for (clean_counter = 0; clean_counter < 10; clean_counter = clean_counter + 1) begin
+            #7 pin = !pin;
+        end
+
+        if (conditioned != 1) begin
+            dutpassed = 0;
+            $display("Debouncing failed");
+        end
+
+        // Test edge detection -- falling edge
+        pin = 0;
+        repeat (6) begin
+            @ (posedge clk);
+            if (falling !== 0) begin
+                $display("Edge test failed in repeat block");
+                dutpassed = 0;
+            end
+        end
+        #1 // Wait a little bit, but not longer than a clock cycle
+
+        if (falling !== 1) begin
+            $display("Edge test failed -- signal never set");
+            dutpassed = 0;
+        end
+        #20
+        if (falling !== 0) begin
+            $display("Edge test failed -- signal did not reset");
+            dutpassed = 0;
+        end
+
+        // Test edge detection - rising edge
+        pin = 1;
+        repeat (6) begin
+            @ (posedge clk);
+            if (rising !== 0) begin
+                $display("Edge test failed in repeat block");
+                dutpassed = 0;
+            end
+        end
+        #1 // Wait a little bit, but not longer than a clock cycle
+
+        if (rising !== 1) begin
+            $display("Edge test failed -- signal never set");
+            dutpassed = 0;
+        end
+        #20
+        if (rising !== 0) begin
+            $display("Edge test failed -- signal did not reset");
+            dutpassed = 0;
+        end
 
         $display("DUT passed: %d", dutpassed);
     end
