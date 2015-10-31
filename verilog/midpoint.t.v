@@ -9,11 +9,11 @@ module testMidpoint();
     reg dutpassed;
 
     midpoint #(8) dut(
-                        .btn0(btn),   
-                        .switch0(switch0), 
-                        .switch1(switch1), 
-                        .clk(clk), 
-                        .parallelout(parallelOut), 
+                        .btn0(btn),
+                        .switch0(switch0),
+                        .switch1(switch1),
+                        .clk(clk),
+                        .parallelout(parallelOut),
                         .serialout(serialOut)
                     );
 
@@ -22,7 +22,7 @@ module testMidpoint();
     always #10 clk=!clk;    // 50MHz Clock
 
     initial begin
-        $dumpfile("waveform.vcd");
+        $dumpfile("test/waveform.vcd");
         $dumpvars(0, testMidpoint);
 
         dutpassed = 1;
@@ -32,7 +32,7 @@ module testMidpoint();
         if (parallelOut !== 8'hA5 && serialOut !== 1) begin
             dutpassed = 0;
             $display("Test Case 1 Failed");
-        end 
+        end
 
         // Test shifting
         switch0 = 0; #150
@@ -40,8 +40,8 @@ module testMidpoint();
         if (parallelOut !== 8'h4A && serialOut !== 0) begin
             dutpassed = 0;
             $display("Test Case 2 Failed");
-        end 
+        end
 
         $display("dutpassed: %b", dutpassed);
-    end 
+    end
 endmodule

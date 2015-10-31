@@ -1,1 +1,1 @@
-iverilog -o test/compiled inputconditioner.v shiftregister.v midpoint.v midpoint.t.v && ./test/compiled;  gtkwave waveform.vcd
+iverilog -o test/compiled verilog/inputconditioner.v verilog/shiftregister.v verilog/midpoint.v verilog/midpoint.t.v && ./test/compiled;  gtkwave test/waveform.vcd

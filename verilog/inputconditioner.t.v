@@ -25,7 +25,7 @@ module testConditioner();
     integer synchronize_counter;
     integer clean_counter;
     initial begin
-        $dumpfile("waveform.vcd");
+        $dumpfile("test/waveform.vcd");
         $dumpvars(0, testConditioner);
         dutpassed = 1;
 

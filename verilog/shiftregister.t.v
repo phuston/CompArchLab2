@@ -10,25 +10,27 @@ module testshiftregister();
     wire[7:0]       parallelDataOut;
     wire            serialDataOut;
     reg[7:0]        parallelDataIn;
-    reg             serialDataIn; 
+    reg             serialDataIn;
     reg             dutpassed;
-    
+
     // Instantiate with parameter width = 8
-    shiftregister #(8) dut(.clk(clk), 
+    shiftregister #(8) dut(.clk(clk),
     		           .peripheralClkEdge(peripheralClkEdge),
-    		           .parallelLoad(parallelLoad), 
-    		           .parallelDataIn(parallelDataIn), 
-    		           .serialDataIn(serialDataIn), 
-    		           .parallelDataOut(parallelDataOut), 
+    		           .parallelLoad(parallelLoad),
+    		           .parallelDataIn(parallelDataIn),
+    		           .serialDataIn(serialDataIn),
+    		           .parallelDataOut(parallelDataOut),
     		           .serialDataOut(serialDataOut));
-    
+
     initial begin
+        $dumpfile("test/waveform.vcd");
+        $dumpvars(0, testshiftregister);
         dutpassed = 1;
         peripheralClkEdge = 1;
 
         // Load initial data in parallel
         clk = 0;
-        parallelLoad = 1; 
+        parallelLoad = 1;
         parallelDataIn = 8'b10000000;
 
         #5 clk = 1; #5 clk = 0;
