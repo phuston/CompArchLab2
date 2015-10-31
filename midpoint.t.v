@@ -25,12 +25,23 @@ module testMidpoint();
         $dumpfile("waveform.vcd");
         $dumpvars(0, testMidpoint);
 
+        dutpassed = 1;
+
+        // Test parallel in
         btn = 1; #150 btn = 0; #150
-        $display("Parallel Out: %b", parallelOut);
-        $display("Serial Out: %b", serialOut);
         if (parallelOut !== 8'hA5 && serialOut !== 1) begin
             dutpassed = 0;
             $display("Test Case 1 Failed");
         end 
+
+        // Test shifting
+        switch0 = 0; #150
+        switch1 = 1; #150
+        if (parallelOut !== 8'h4A && serialOut !== 0) begin
+            dutpassed = 0;
+            $display("Test Case 2 Failed");
+        end 
+
+        $display("dutpassed: %b", dutpassed);
     end 
 endmodule
