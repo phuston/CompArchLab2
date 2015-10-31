@@ -1,7 +1,7 @@
 Lab 2 Work Plan 
 Isaac Getto, Sarah Walters, Patrick Huston
 
-Input Conditioner -- 1.5 hr | 10/29
+Input Conditioner -- 1.5 hr | 10/29 -- Timing 2.5 hr | 10/29
 Complete inputconditioner.v
 Test bench for input conditioner
 Test script for input conditioner
