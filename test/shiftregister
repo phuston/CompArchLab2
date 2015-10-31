@@ -1,0 +1,1 @@
+iverilog -o test/compiled shiftregister.v shiftregister.t.v && ./test/compiled && gtkwave waveform.vcd
