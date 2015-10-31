@@ -1,0 +1,8 @@
+0. Set all switches to 0 and ensure that no buttons are depressed
+1. Press BTN0 to load the hard-coded value 8'hA5 (8'b1010_0101) in parallel
+2. Press BTN1 to observe the least significant 4 bits of the stored data in parallel on the LEDs (should be 0101)
+3. Press BTN2 to observe the most significant 4 bits of the stored data in parallel on the LEDs (should be 1010)
+4. Set SW0 to 1 (sets serial in to 1)
+5. Flip SW0 up and then down to cause a left shift
+6. Press BTN1 to observe the least significant 4 bits of the stored data in parallel on the LEDs (should be 1011)
+7. Press BTN2 to observe the most significant 4 bits of the stored data in parallel on the LEDs (should be 0100)
