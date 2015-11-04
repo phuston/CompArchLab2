@@ -40,29 +40,30 @@ module spiMemory
 								   .negativeedge()
 								  );
 
-	wire parallelDataOut, serialDataOut, parallelDataIn;
+	wire parallelDataOut, serialDataOut, parallelDataIn, SR_WE;
 	shiftregister shiftRegister(
 								.clk(clk),
 								.peripheralClkEdge(positiveedgeSclk),
-								.parallelLoad(#NOTDONE),
+								.parallelLoad(SR_WE),
 								.parallelDataIn(parallelDataIn),
 								.serialDataIn(conditionedMosi),
 								.parallelDataOut(parallelDataOut),
 								.serialDataOut(serialDataOut)
 							   );
 
-	wire dataMemoryAddress;
+	wire dataMemoryAddress, DM_WE;
 	datamemory dataMemory(
 						  .clk(clk),
 						  .dataOut(parallelDataIn),
 						  .address(dataMemoryAddress),
-						  .writeEnable(#NOTDONE),
+						  .writeEnable(DM_WE),
 						  .dataIn(parallelDataOut)
 						 );
 
+  wire ADDR_WE;
 	dff #(8) addressLatch(
 						  .trigger(clk),
-						  .enable(#NOTDONE),
+						  .enable(ADDR_WE),
 						  .d(parallelDataOut),
 						  .q(dataMemoryAddress)
 						 );
@@ -76,13 +77,22 @@ module spiMemory
 					 .q(misoDffOut)
 					);
 
+  wire MISO_BUFE;
 	tristatebuffer misoBuffer(
 							  .d(misoDffOut),
 							  .q(miso_pin),
-							  .enable(#NOTDONE)
+							  .enable(MISO_BUFE)
 							 );
 
-
+  fsm Fsm(
+          .sclk(positiveedgeSclk),
+          .chipselect(conditionedCs),
+          .readwrite(parallelDataOut[0]),
+          .shiftRegWriteEnable(SR_WE),
+          .dataMemWriteEnable(DM_WE),
+          .addressLatchEnable(ADDR_WE),
+          .misoEnable(MISO_BUFE)
+         );
 
 endmodule
-   
+
