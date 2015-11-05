@@ -10,7 +10,7 @@ module spiMemory
     output          miso_pin,   // SPI master in slave out
     input           mosi_pin,   // SPI master out slave in
     input           fault_pin,  // For fault injection testing
-    output [3:0]    leds        // LEDs for debugging
+    output [2:0]    leds        // LEDs for debugging
 );
 
 	wire conditionedMosi;
@@ -40,7 +40,7 @@ module spiMemory
 								   .negativeedge()
 								  );
 
-	wire[7:0] parallelDataOut
+    wire[7:0] parallelDataOut;
 	wire serialDataOut, parallelDataIn, SR_WE;
 	shiftregister shiftRegister(
 								.clk(clk),
