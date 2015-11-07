@@ -11,6 +11,14 @@
 2. Clock Analysis
 "If the main system clock is running at 50MHz, what is the maximum length input glitch that will be suppressed by this design for a waittime of 10?"
 
+In the analysis of the case that the clock is running at 50MHz, the maximum length input glitch that will still be suppressed by the design for a waittime of 10 will be 259 'time units'.
+
+Because:
+
+Will take 3 clock cycles - 60 time units to pass data from noisysignal to synchronizer1, + 10 additional clock cycles - 200 time units. 
+
+Has to do with noisysignal being changed right after a positive clock edge.
+
 #### Shift Register
 ###### Testing Strategy
 To test our shift register unit, we tested each of its use cases - serial data load, parallel data load, serial data read, and parallel data read. 
