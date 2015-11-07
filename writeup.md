@@ -7,17 +7,20 @@
 
 
     Shown below is our circuit diagram implementation for the input conditioning unit.
-![Input Conditioning Circuit Diagram](img/circuit_diargam.jpg)
+    
+<img src="img/circuit_diargam.jpg" width="500px" height="800px" />
+
 2. Clock Analysis
 "If the main system clock is running at 50MHz, what is the maximum length input glitch that will be suppressed by this design for a waittime of 10?"
 
 In the analysis of the case that the clock is running at 50MHz, the maximum length input glitch that will still be suppressed by the design for a waittime of 10 will be 259 'time units'.
 
-Because:
+The analysis for this answer is as follows:
 
-Will take 3 clock cycles - 60 time units to pass data from noisysignal to synchronizer1, + 10 additional clock cycles - 200 time units. 
+Maximum of 3 clock cycles = 60 time units to pass data from noisysignal to synchronizer1
+plus 10 additional clock cycles = 200 time units to increment counter from 0 to 10.
 
-Has to do with noisysignal being changed right after a positive clock edge.
+This is a maximum delay of 260 time units during which noisysignal must be held constant. Therefore, noisysignal can hold a value for up to 259 time units (under the correct conditions) and will never pass through to the conditioned signal.
 
 #### Shift Register
 ###### Testing Strategy
@@ -33,4 +36,6 @@ Finally, we tested the functionality of the peripheral clock edge by setting the
 To test the SPI module, we iterated through all 2^7 addresses supported, and wrote twice the address value to that address. At this point, we read the values at each of the addresses written to, and ensured the value read matched the expected value that was written.
 
 #### Fault Injection
-This is where our section on describing fault injection will go.
+Our injectable failure mode is that the 'synchronizer1' signal of the input conditioner module is always low if the fault pin is active. This could happen if the d flip-flop labeled S1 in the schematic of the input conditioner low were broken during manufacturing. We simulated this defect by ANDing NOT(FaultInjection) and the noisysignal input into the d flip-flop S1. 
+
+Because the input conditioner module is fundamental to the function of the SPI memory, every test case should fail when fault injection is enabled. When the synchronizer1 signal is always low, no signal can pass through the input conditioner, making it entirely useless.
