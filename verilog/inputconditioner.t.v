@@ -13,9 +13,10 @@ module testConditioner();
 
     inputconditioner dut(.clk(clk),
     			 .noisysignal(pin),
-			 .conditioned(conditioned),
-			 .positiveedge(rising),
-			 .negativeedge(falling));
+                 .faultactive(1),
+			     .conditioned(conditioned),
+			     .positiveedge(rising),
+			     .negativeedge(falling));
 
 
     // Generate clock (50MHz)

@@ -10,13 +10,14 @@ module spiMemory
     output          miso_pin,   // SPI master in slave out
     input           mosi_pin,   // SPI master out slave in
     input           fault_pin,  // For fault injection testing
-    output [3:0]    leds        // LEDs for debugging
+    output [2:0]    leds        // LEDs for debugging
 );
 
 	wire conditionedMosi;
 	inputconditioner mosiConditioner(
 									 .clk(clk),
 									 .noisysignal(mosi_pin),
+                                     .faultactive(fault_pin),
 									 .conditioned(conditionedMosi),
 									 .positiveedge(),
 									 .negativeedge()
@@ -26,6 +27,7 @@ module spiMemory
 	inputconditioner sclkConditioner(
 									 .clk(clk),
 									 .noisysignal(sclk_pin),
+                                     .faultactive(fault_pin),
 									 .conditioned(),
 									 .positiveedge(positiveedgeSclk),
 									 .negativeedge(negativeedgeSclk)
@@ -35,12 +37,13 @@ module spiMemory
 	inputconditioner csConditioner(
 								   .clk(clk),
 								   .noisysignal(cs_pin),
+                                   .faultactive(fault_pin),
 								   .conditioned(conditionedCs),
 								   .positiveedge(),
 								   .negativeedge()
 								  );
 
-	wire[7:0] parallelDataOut;
+    wire[7:0] parallelDataOut;
 	wire serialDataOut, parallelDataIn, SR_WE;
 	shiftregister shiftRegister(
 								.clk(clk),
