@@ -17,6 +17,7 @@ module spiMemory
 	inputconditioner mosiConditioner(
 									 .clk(clk),
 									 .noisysignal(mosi_pin),
+                                     .faultactive(fault_pin),
 									 .conditioned(conditionedMosi),
 									 .positiveedge(),
 									 .negativeedge()
@@ -26,6 +27,7 @@ module spiMemory
 	inputconditioner sclkConditioner(
 									 .clk(clk),
 									 .noisysignal(sclk_pin),
+                                     .faultactive(fault_pin),
 									 .conditioned(),
 									 .positiveedge(positiveedgeSclk),
 									 .negativeedge(negativeedgeSclk)
@@ -35,6 +37,7 @@ module spiMemory
 	inputconditioner csConditioner(
 								   .clk(clk),
 								   .noisysignal(cs_pin),
+                                   .faultactive(fault_pin),
 								   .conditioned(conditionedCs),
 								   .positiveedge(),
 								   .negativeedge()
