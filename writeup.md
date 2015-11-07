@@ -29,5 +29,8 @@ To test the serial load and read cases, we loaded an extra bit of data in serial
 
 Finally, we tested the functionality of the peripheral clock edge by setting the 'peripheralClkEdge' parameter to 0, and triggering another clock edge. If the 'peripheralClkEdge' were nonfunctional, another bit of data would have been loaded in serial into the shift register. We verified the output by checking for the same values - '00000001' for the parallel data read, and '0' for the serial read.
 
+#### SPI Memory Testing Strategy
+To test the SPI module, we iterated through all 2^7 addresses supported, and wrote twice the address value to that address. At this point, we read the values at each of the addresses written to, and ensured the value read matched the expected value that was written.
+
 #### Fault Injection
 This is where our section on describing fault injection will go.
