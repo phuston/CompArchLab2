@@ -40,7 +40,7 @@ module spiMemory
 								   .negativeedge()
 								  );
 
-	wire[7:0] parallelDataOut
+	wire[7:0] parallelDataOut;
 	wire serialDataOut, parallelDataIn, SR_WE;
 	shiftregister shiftRegister(
 								.clk(clk),
