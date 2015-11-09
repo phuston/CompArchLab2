@@ -7,7 +7,7 @@
 
     Shown below is our circuit diagram implementation for the input conditioning unit.
     
-<img src="img/circuit_diargam.jpg" width="500px" height="800px" />
+<img src="img/circuit_diargam.jpg" width="400px" height="600px" />
 
 2. Clock Analysis
 
@@ -40,6 +40,9 @@ To test the SPI module, we iterated through all 2^7 addresses supported, and wro
 #### Fault Injection
 Our injectable failure mode is that the 'synchronizer1' signal of the input conditioner module is always low if the fault pin is active. This could happen if the d flip-flop labeled S1 in the schematic of the input conditioner low were broken during manufacturing. We simulated this defect by ANDing NOT(FaultInjection) and the noisysignal input into the d flip-flop `S1`. 
 
-<img src="img/circuit_diargam.jpg" width="500px" height="800px" />
+<img src="img/circuit_diargam.jpg" width="400px" height="600px" />
 
 Because the input conditioner module is fundamental to the function of the SPI memory, every test case should fail when fault injection is enabled. When the synchronizer1 signal is always low, no signal can pass through the input conditioner, making it entirely useless.
+
+#### Work Plan Reflection
+Note: our work plan and results are encompassed in the work_plan.txt document. On a high level, we progressed through a majority of the lab at the pace we expected to. Unfortunately, due to some technical difficulties with Vivado, the last portions of the lab blew out of proportion, and we spent much longer than expected debugging the software. 
