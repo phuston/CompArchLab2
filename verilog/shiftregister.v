@@ -19,12 +19,23 @@ output              serialDataOut       // Positive edge synchronized
 );
 
     reg [width-1:0]      shiftregistermem;
+
+    // Serial data out always presents the 
+    // most significant bit of the shift register
 	assign serialDataOut = shiftregistermem[width-1];
+
+    // Parallel data out always presents the
+    // entire contents of the shift register
 	assign parallelDataOut = shiftregistermem;
+
     always @(posedge clk) begin
+
+        // Load data in parallel
         if (parallelLoad === 1) begin
             shiftregistermem <= parallelDataIn;
         end
+
+        // Load data in serially on clock edges
         else if (peripheralClkEdge === 1) begin
             shiftregistermem <= {shiftregistermem[width-2:0], serialDataIn};
 	    end
