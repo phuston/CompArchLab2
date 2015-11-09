@@ -4,11 +4,11 @@
 
 module tristatebuffer
 (
+	input enable
 	input d,
 	output q,
-	input enable
 );
 
-assign q = enable? d : 'bz;
+    assign q = enable? d : 'bz;
 
 endmodule
