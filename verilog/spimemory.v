@@ -12,7 +12,8 @@ module spiMemory
     input           fault_pin,  // For fault injection testing
     output [3:0]    leds        // LEDs for debugging
 );
-
+	
+	// Instantiate input conditioner for MOSI input
 	wire conditionedMosi;
 	inputconditioner mosiConditioner(
 									 .clk(clk),
@@ -22,6 +23,7 @@ module spiMemory
 									 .negativeedge()
 									);
 
+	// Instantiate input conditioner for sClk input
 	wire positiveedgeSclk, negativeedgeSclk;
 	inputconditioner sclkConditioner(
 									 .clk(clk),
@@ -31,6 +33,7 @@ module spiMemory
 									 .negativeedge(negativeedgeSclk)
 									);
 
+	// Instantiate input conditioner for 'chip select'
 	wire conditionedCs;
 	inputconditioner csConditioner(
 								   .clk(clk),
@@ -40,6 +43,7 @@ module spiMemory
 								   .negativeedge()
 								  );
 
+	// Instantiate shift register
 	wire[7:0] parallelDataOut
 	wire serialDataOut, parallelDataIn, SR_WE;
 	shiftregister shiftRegister(
@@ -52,6 +56,7 @@ module spiMemory
 								.serialDataOut(serialDataOut)
 							   );
 
+	// Instantiate data memory
 	wire dataMemoryAddress, DM_WE;
 	datamemory dataMemory(
 						  .clk(clk),
@@ -61,7 +66,7 @@ module spiMemory
 						  .dataIn(parallelDataOut)
 						 );
 
-  wire ADDR_WE;
+	wire ADDR_WE;
 	dff #(8) addressLatch(
 						  .trigger(clk),
 						  .enable(ADDR_WE),
@@ -78,14 +83,15 @@ module spiMemory
 					 .q(misoDffOut)
 					);
 
-  wire MISO_BUFE;
+	wire MISO_BUFE;
 	tristatebuffer misoBuffer(
 							  .d(misoDffOut),
 							  .q(miso_pin),
 							  .enable(MISO_BUFE)
 							 );
 
-  fsm Fsm(
+	// Instantiate finite state machine
+	fsm Fsm(
           .sclk(positiveedgeSclk),
           .chipselect(conditionedCs),
           .readwrite(parallelDataOut[0]),
