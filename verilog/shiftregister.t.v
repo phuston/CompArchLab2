@@ -33,6 +33,7 @@ module testshiftregister();
         parallelLoad = 1;
         parallelDataIn = 8'b10000000;
 
+        // The shift register should have loaded the data in parallel
         #5 clk = 1; #5 clk = 0;
         if (serialDataOut !== 1 && parallelDataOut !== 8'b10000000) begin
             dutpassed = 0;
@@ -42,6 +43,8 @@ module testshiftregister();
         // Load data in serial
         parallelLoad = 0;
         serialDataIn = 1;
+
+        // The shift register should have loaded the data serially
         #5 clk = 1; #5 clk = 0;
         if (serialDataOut !== 0 && parallelDataOut !== 8'b1) begin
             dutpassed = 0;
@@ -50,6 +53,8 @@ module testshiftregister();
 
         // Test peripheral clock edge is functional
         peripheralClkEdge = 0;
+
+        // There should be no change in the shift register
         #5 clk = 1; #5 clk = 0;
         if (serialDataOut !== 0 && parallelDataOut !== 8'b1) begin
             dutpassed = 0;
