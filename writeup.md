@@ -20,6 +20,10 @@ plus 10 additional clock cycles = 200 time units to increment counter from 0 to 
 
 This is a maximum delay of 260 time units during which `noisysignal` must be held constant. Therefore, `noisysignal` can hold a value for up to 259 time units (under the correct conditions) and will never pass through to the `conditioned` signal.
 
+Graphically, this behavior is depicted below in a timing diagram. In this test, `waittime` was set to 10.
+
+![Timing Diagram](/img/timingdiagram.png "Input Conditioner Timing Diagram")
+
 #### Shift Register
 ###### Testing Strategy
 To test our shift register unit, we tested each of its functionalities individually - serial data load, parallel data load, serial data read, and parallel data read. 
