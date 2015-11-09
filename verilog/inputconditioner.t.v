@@ -14,7 +14,7 @@ module testConditioner();
     // Create the input conditioner that will be tested
     inputconditioner dut(.clk(clk),
     			 .noisysignal(pin),
-                 .faultactive(1),
+                 .faultactive(0),
 			     .conditioned(conditioned),
 			     .positiveedge(rising),
 			     .negativeedge(falling));
