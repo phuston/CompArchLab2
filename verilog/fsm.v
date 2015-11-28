@@ -1,14 +1,21 @@
+//------------------------------------
+// Finite State Machine for SPI Memory
+//------------------------------------
+
 module fsm
 (
-  input sclk,
-  input chipselect,
-  input readwrite,
-  output reg shiftRegWriteEnable,
-  output reg dataMemWriteEnable,
-  output reg addressLatchEnable,
-  output reg misoEnable
+  input sclk,                       // Clock for synchronization
+  input chipselect,                 // The selected chip
+  input readwrite,                  // Whether or not we are reading or writing
+
+                                    // -----------------------------
+  output reg shiftRegWriteEnable,   // |                           |
+  output reg dataMemWriteEnable,    // |      Output Signals       |
+  output reg addressLatchEnable,    // |                           |
+  output reg misoEnable             // -----------------------------
 );
 
+  // The possible States
   parameter state_GET = 3'd0;
   parameter state_GOT = 3'd1;
   parameter state_READ1 = 3'd2;
@@ -18,10 +25,13 @@ module fsm
   parameter state_WRITE2 = 3'd6;
   parameter state_DONE = 3'd7;
 
+  // Registers that hold the state and count
   reg[2:0] state;
   reg[3:0] counter;
 
   always @(posedge sclk) begin
+
+      // Reset when chipselect is high
       if (chipselect) begin
         state <= 0;
         counter <= 0;

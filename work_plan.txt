@@ -1,38 +1,40 @@
 Lab 2 Work Plan
 Isaac Getto, Sarah Walters, Patrick Huston
 
-Input Conditioner -- 1.5 hr | 10/29 -- Timing 2.5 hr | 10/29
+Input Conditioner -- 1.5 hr | 10/29 -- **Actual Timing 2.5 hr | 10/29
 Complete inputconditioner.v
 Test bench for input conditioner
 Test script for input conditioner
 Circuit diagram of structural circuit for input conditioner
 Timing analysis for input conditioner
 
-Shift register -- 1 hr | start 10/29, finish 10/31 -- Timing 1 hr | 10/31
+Shift register -- 1 hr | start 10/29, finish 10/31 -- **Actual Timing 1 hr | 10/31
 Complete shiftregister.v
 Test bench for shift register
 Describe test bench strategy
 
-Midpoint checkin (due November 2 5pm) -- 1.5 hr | 10/31 -- Timing 1.5 hr | 10/31
+Midpoint checkin (due November 2 5pm) -- 1.5 hr | 10/31 -- **Actual Timing 1.5 hr | 10/31
 midpoint.v
 Load onto FPGA
 
 Buffer -- can meet on Sunday 11/1 if necessary. (didn't need to meet)
 
-SPI Memory -- 2.5 hr | start 11/2, finish 11/4
+SPI Memory -- 2.5 hr | start 11/2, finish 11/4 -- **Actual Timing 3 hr 11/4 and 11/6
 Understand/finalize schematic
 Understand/finalize FSM
 Write verilog
 Load onto FPGA
 
-SPI Memory Testing -- 1 hr | 11/4
+SPI Memory Testing -- 1 hr | 11/4 -- **Actual Timing .5 hr 11/6
 Write tests
 Describe testing strategy
 
-Fault Injection -- 1 hr | 11/6
+Fault Injection -- 1 hr | 11/6 -- **Actual Timing 3-4 hr 11/6 and 11/7 (Never actually completed)
 Modify SPI memory so it’s sensitive to fault_pin (and propagate through all modules)
 Connect fault_pin to switch on FPGA -> test on FPGA
 
-Write report (due November 9, 5pm) -- 1 hr | 11/6
+Write report (due November 9, 5pm) -- 1 hr | 11/6 **Actual Timing - Completed bit by bit throughout work process
 
 Aiming to be done by 11/6; buffer -- can meet over the weekend if necessary.
+
+Actually finished 11/9; FPGA fault injection not 100% successful
