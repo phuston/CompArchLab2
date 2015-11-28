@@ -1,0 +1,39 @@
+#-----------------------------------------------------------
+# Vivado v2015.2 (64-bit)
+# SW Build 1266856 on Fri Jun 26 16:35:25 MDT 2015
+# IP Build 1264090 on Wed Jun 24 14:22:01 MDT 2015
+# Start of session at: Fri Nov  6 18:31:06 2015
+# Process ID: 24975
+# Log file: /home/swalters/Classes/Fall15/CompArch-Lab2/lab_2/lab_2.runs/impl_1/spiMemory.vdi
+# Journal file: /home/swalters/Classes/Fall15/CompArch-Lab2/lab_2/lab_2.runs/impl_1/vivado.jou
+#-----------------------------------------------------------
+source spiMemory.tcl -notrace
+Command: open_checkpoint spiMemory_routed.dcp
+INFO: [Netlist 29-17] Analyzing 6 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-479] Netlist was created with Vivado 2015.2
+INFO: [Device 21-403] Loading part xc7z010clg400-1
+INFO: [Project 1-570] Preparing netlist for logic optimization
+Parsing XDC File [/home/swalters/Classes/Fall15/CompArch-Lab2/lab_2/lab_2.runs/impl_1/.Xil/Vivado-24975-swalters-Latitude-E6430/dcp/spiMemory.xdc]
+Finished Parsing XDC File [/home/swalters/Classes/Fall15/CompArch-Lab2/lab_2/lab_2.runs/impl_1/.Xil/Vivado-24975-swalters-Latitude-E6430/dcp/spiMemory.xdc]
+Reading XDEF placement.
+Reading placer database...
+Reading XDEF routing.
+Read XDEF File: Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 1128.395 ; gain = 0.000 ; free physical = 1660 ; free virtual = 13206
+Restored from archive | CPU: 0.010000 secs | Memory: 0.086067 MB |
+Finished XDEF File Restore: Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 1128.395 ; gain = 0.000 ; free physical = 1660 ; free virtual = 13206
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 1 instances were transformed.
+  RAM128X1S => RAM128X1S (MUXF7, RAMS64E, RAMS64E): 1 instances
+
+INFO: [Project 1-484] Checkpoint was created with build 1266856
+Attempting to get a license for feature 'Implementation' and/or device 'xc7z010'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xc7z010'
+Running DRC as a precondition to command write_bitstream
+INFO: [DRC 23-27] Running DRC with 4 threads
+WARNING: [DRC 23-20] Rule violation (BUFC-1) Input Buffer Connections - Input buffer fault_pin_IBUF_inst has no loads. An input buffer must drive an internal load.
+WARNING: [DRC 23-20] Rule violation (RTSTAT-10) No routable loads - 1 net(s) have no routable loads. The problem bus(es) and/or net(s) are fault_pin_IBUF.
+WARNING: [DRC 23-20] Rule violation (ZPS7-1) PS7 block required - The PS7 cell must be used in this Zynq design in order to enable correct default configuration.
+INFO: [Vivado 12-3199] DRC finished with 0 Errors, 3 Warnings
+INFO: [Vivado 12-3200] Please refer to the DRC report (report_drc) for more information.
+Loading data files...
